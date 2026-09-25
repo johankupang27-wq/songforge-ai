@@ -399,6 +399,7 @@ const prompt=document.getElementById("prompt").value;
 const genre=document.getElementById("genre").value;
 const mood=document.getElementById("mood").value;
 const vocal=document.getElementById("vocal").value;
+const length=document.getElementById("length").value;
 
 const used=localStorage.getItem("songforge_free_used");
 
@@ -408,7 +409,7 @@ return;
 }
 
 document.getElementById("resultText").innerText=
-genre+" • "+mood+" • "+vocal+" • "+prompt;
+length+" • "+genre+" • "+mood+" • "+vocal+" • "+prompt;
 
 document.getElementById("result").style.display="block";
 
