@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SongForge AI — AI Music Creator</title>
+<meta name="description" content="SongForge AI - Create music with artificial intelligence.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#070812;
+color:#fff;
+line-height:1.6
+}
+nav{
+height:70px;
+display:flex;
+align-items:center;
+padding:0 6%;
+border-bottom:1px solid #ffffff12;
+background:#080914;
+position:sticky;
+top:0;
+z-index:10
+}
+.logo{
+font-size:21px;
+font-weight:800;
+margin-right:auto
+}
+.logo span{color:#9b7cff}
+nav a{
+color:#aaa;
+text-decoration:none;
+margin:0 15px
+}
+.btn{
+display:inline-block;
+padding:13px 21px;
+border-radius:12px;
+background:linear-gradient(135deg,#8b5cf6,#5b7cff);
+color:white;
+text-decoration:none;
+font-weight:bold;
+border:0;
+cursor:pointer
+}
+.hero{
+max-width:1050px;
+margin:auto;
+text-align:center;
+padding:100px 20px
+}
+.badge{
+color:#a78bfa;
+font-size:12px;
+font-weight:bold;
+letter-spacing:3px
+}
+h1{
+font-size:clamp(48px,8vw,85px);
+line-height:1;
+margin:25px 0
+}
+h1 span{
+background:linear-gradient(90deg,#a78bfa,#67e8f9);
+-webkit-background-clip:text;
+color:transparent
+}
+.hero p{
+max-width:650px;
+margin:0 auto 30px;
+color:#a8acbd;
+font-size:18px
+}
+.stats{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:30px;
+color:#777b8d;
+font-size:13px
+}
+.container{
+max-width:1050px;
+margin:auto;
+padding:20px
+}
+.card{
+background:#10111f;
+border:1px solid #ffffff12;
+border-radius:24px;
+padding:30px;
+margin-bottom:60px
+}
+.title{
+color:#a78bfa;
+font-size:11px;
+font-weight:bold;
+letter-spacing:3px
+}
+h2{
+font-size:32px;
+margin:8px 0 25px
+}
+textarea,select{
+width:100%;
+background:#080914;
+border:1px solid #ffffff15;
+border-radius:12px;
+padding:14px;
+color:white;
+margin-top:8px;
+font-size:15px
+}
+textarea{
+height:130px;
+resize:vertical
+}
+label{
+display:block;
+font-weight:bold;
+margin-bottom:18px
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
+}
+.full{width:100%}
+.result{
+margin-top:25px;
+padding:20px;
+border-radius:18px;
+background:#080914;
+border:1px solid #ffffff12;
+display:none
+}
+.pricing{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px
+}
+.price{
+background:#0d0e18;
+border:1px solid #ffffff12;
+padding:28px;
+border-radius:20px
+}
+.price.featured{
+border-color:#8b5cf6
+}
+.price h3{
+font-size:14px;
+letter-spacing:2px
+}
+.price strong{
+display:block;
+font-size:40px;
+margin:15px 0
+}
+.price ul{
+list-style:none;
+color:#aaa;
+margin:20px 0
+}
+.price li{
+margin:8px 0
+}
+.price li:before{
+content:"✓ ";
+color:#a78bfa
+}
+footer{
+border-top:1px solid #ffffff12;
+padding:50px 6%;
+margin-top:70px;
+color:#888
+}
+footer a{
+color:#aaa;
+margin-right:20px;
+text-decoration:none
+}
+@media(max-width:700px){
+nav a{display:none}
+.grid,.pricing{grid-template-columns:1fr}
+.stats{flex-direction:column;gap:8px}
+.hero{padding:70px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">♫ SongForge <span>AI</span></div>
+<a href="#create">Create</a>
+<a href="#pricing">Pricing</a>
+<a href="#legal">Legal</a>
+<a class="btn" href="#create">Start Creating</a>
+</nav>
+
+<section class="hero">
+<div class="badge">✦ AI MUSIC CREATOR</div>
+
+<h1>Turn your idea<br>into <span>music.</span></h1>
+
+<p>
+Create original music ideas with AI. Choose your genre,
+mood and vocal style, then turn your imagination into a song.
+</p>
+
+<a class="btn" href="#create">Create your first song →</a>
+
+<div class="stats">
+<span>🎼 20+ Genres</span>
+<span>⚡ Fast Generation</span>
+<span>🔒 Secure</span>
+</div>
+</section>
+
+<div class="container">
+
+<section id="create" class="card">
+
+<div class="title">SONG GENERATOR</div>
+
+<h2>Create your song</h2>
+
+<form id="generator">
+
+<label>
+Song idea
+<textarea id="prompt" placeholder="Contoh: Lagu pop Indonesia tentang perjuangan hidup dan harapan masa depan..." required></textarea>
+</label>
+
+<div class="grid">
+
+<label>
+Genre
+<select id="genre">
+<option>Pop</option>
+<option>Rock</option>
+<option>EDM</option>
+<option>Hip-Hop</option>
+<option>R&B</option>
+<option>Jazz</option>
+<option>Blues</option>
+<option>Reggae</option>
+<option>Gospel / Rohani</option>
+<option>Classical</option>
+<option>Lo-fi</option>
+<option>Country</option>
+<option>Dangdut</option>
+<option>Cinematic</option>
+</select>
+</label>
+
+<label>
+Mood
+<select id="mood">
+<option>Hopeful</option>
+<option>Happy</option>
+<option>Sad</option>
+<option>Epic</option>
+<option>Peaceful</option>
+<option>Romantic</option>
+<option>Energetic</option>
+<option>Dark</option>
+</select>
+</label>
+
+<label>
+Vocal
+<select id="vocal">
+<option>Male</option>
+<option>Female</option>
+<option>Instrumental</option>
+<option>Duet</option>
+</select>
+</label>
+
+<label>
+Length
+<select id="length">
+<option>1 Minute</option>
+<option>2 Minutes</option>
+<option>3 Minutes</option>
+<option>4 Minutes</option>
+</select>
+</label>
+
+</div>
+
+<button class="btn full" type="submit">
+✦ Generate Song
+</button>
+
+</form>
+
+<div id="result" class="result">
+<h3>🎵 Song Request Created</h3>
+<p id="resultText"></p>
+<p style="color:#999;margin-top:10px">
+AI audio engine akan kita sambungkan pada tahap backend berikutnya.
+</p>
+</div>
+
+</section>
+
+<section id="pricing" class="card">
+
+<div class="title">PRICING</div>
+
+<h2>Choose your plan</h2>
+
+<div class="pricing">
+
+<div class="price">
+<h3>FREE</h3>
+<strong>$0</strong>
+<p>One-time free generation</p>
+<ul>
+<li>1 song per device</li>
+<li>Standard generation</li>
+<li>Basic genres</li>
+<li>Account required</li>
+</ul>
+<a class="btn" href="#create">Start Free</a>
+</div>
+
+<div class="price featured">
+<h3>PRO</h3>
+<strong>$5.99</strong>
+<p>Per month</p>
+<ul>
+<li>100 songs/month</li>
+<li>Longer generations</li>
+<li>HD audio</li>
+<li>Download history</li>
+</ul>
+<a class="btn" href="#">Choose Pro</a>
+</div>
+
+<div class="price">
+<h3>CREATOR</h3>
+<strong>$12.99</strong>
+<p>Per month</p>
+<ul>
+<li>500 songs/month</li>
+<li>Priority generation</li>
+<li>Advanced controls</li>
+<li>Creator features</li>
+</ul>
+<a class="btn" href="#">Choose Creator</a>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<footer id="legal">
+
+<div class="logo">♫ SongForge <span>AI</span></div>
+
+<p style="margin:15px 0">
+AI music creation platform.
+</p>
+
+<a href="legal/privacy.html">Privacy Policy</a>
+<a href="legal/terms.html">Terms</a>
+<a href="legal/copyright.html">Copyright</a>
+<a href="legal/disclaimer.html">Disclaimer</a>
+<a href="legal/contact.html">Contact</a>
+
+<p style="margin-top:25px;font-size:12px">
+© 2026 SongForge AI. All rights reserved.
+</p>
+
+</footer>
+
+<script>
+const form=document.getElementById("generator");
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const prompt=document.getElementById("prompt").value;
+const genre=document.getElementById("genre").value;
+const mood=document.getElementById("mood").value;
+const vocal=document.getElementById("vocal").value;
+
+const used=localStorage.getItem("songforge_free_used");
+
+if(used==="1"){
+alert("Free generation sudah digunakan pada perangkat ini. Silakan upgrade ke Pro atau Creator.");
+return;
+}
+
+document.getElementById("resultText").innerText=
+genre+" • "+mood+" • "+vocal+" • "+prompt;
+
+document.getElementById("result").style.display="block";
+
+localStorage.setItem("songforge_free_used","1");
+
+});
+</script>
+
+</body>
+</html>
